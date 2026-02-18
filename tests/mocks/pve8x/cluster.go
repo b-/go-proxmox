@@ -429,6 +429,13 @@ func cluster() {
 		"data": {"vnet":"user1","type":"vnet","zone":"test1","vlanaware":1,"tag":10}
 		}`)
 
+	gock.New(config.C.URI).
+		Get("^/cluster/sdn/vnets/maxTagVnet$").
+		Reply(200).
+		JSON(`{
+		"data": {"vnet":"maxTagVnet","type":"vnet","zone":"test1","vlanaware":1,"tag":16777215}
+		}`)
+
 	// GET /cluster/firewall/groups - List firewall security groups
 	gock.New(config.C.URI).
 		Persist().

@@ -1989,7 +1989,7 @@ type VNet struct {
 	Type      string `json:"type,omitempty"`
 	Zone      string `json:"zone,omitempty"`
 	VlanAware int    `json:"vlanaware,omitempty"`
-	Tag       uint16 `json:"tag,omitempty"`
+	Tag       uint32 `json:"tag,omitempty"`
 }
 
 type VNetOptions struct {

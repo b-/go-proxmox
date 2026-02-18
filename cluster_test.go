@@ -117,5 +117,11 @@ func TestCluster_SDNVNets(t *testing.T) {
 	assert.Equal(t, "vnet", vnet.Type)
 	assert.Equal(t, "test1", vnet.Zone)
 	assert.Equal(t, 1, vnet.VlanAware)
-	assert.Equal(t, uint16(10), vnet.Tag)
+	assert.Equal(t, uint32(10), vnet.Tag)
+
+	// VNet Tag max value (VXLAN VNI range is 0-16777215)
+	vnetMaxTag, err := cluster.SDNVNet(ctx, "maxTagVnet")
+	assert.Nil(t, err)
+	assert.Equal(t, "maxTagVnet", vnetMaxTag.Name)
+	assert.Equal(t, uint32(16777215), vnetMaxTag.Tag)
 }
